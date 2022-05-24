@@ -17,3 +17,6 @@ This soft is based on C#. It is my works for course and only for studying.
 4. Right click the project and choice NuGet.
 5. Search `PackeDotNet` and add to project.
 6. Build and Run.
+
+## Other Reference
+[VisualStudio.gitignore](https://github.com/github/gitignore/blob/main/VisualStudio.gitignore)
