@@ -42,7 +42,7 @@
             this.textBoxConvertRawData = new System.Windows.Forms.TextBox();
             this.splitStatisticsAndFilter = new System.Windows.Forms.SplitContainer();
             this.groupBoxStatistics = new System.Windows.Forms.GroupBox();
-            this.textBoxStatistcs = new System.Windows.Forms.TextBox();
+            this.textBoxStatistics = new System.Windows.Forms.TextBox();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
             this.splitFilterContentAndButton = new System.Windows.Forms.SplitContainer();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
@@ -97,8 +97,8 @@
             // 
             this.splitPacketListAndOther.Panel2.Controls.Add(this.splitTreeViewAndOther);
             this.splitPacketListAndOther.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitPacketListAndOther.Size = new System.Drawing.Size(839, 492);
-            this.splitPacketListAndOther.SplitterDistance = 156;
+            this.splitPacketListAndOther.Size = new System.Drawing.Size(839, 533);
+            this.splitPacketListAndOther.SplitterDistance = 169;
             this.splitPacketListAndOther.TabIndex = 1;
             // 
             // listViewPacket
@@ -114,7 +114,7 @@
             this.listViewPacket.HideSelection = false;
             this.listViewPacket.Location = new System.Drawing.Point(6, 6);
             this.listViewPacket.Name = "listViewPacket";
-            this.listViewPacket.Size = new System.Drawing.Size(827, 144);
+            this.listViewPacket.Size = new System.Drawing.Size(827, 157);
             this.listViewPacket.TabIndex = 0;
             this.listViewPacket.UseCompatibleStateImageBehavior = false;
             this.listViewPacket.View = System.Windows.Forms.View.Details;
@@ -153,7 +153,7 @@
             // 
             this.splitTreeViewAndOther.Panel2.Controls.Add(this.splitRawDataAndOther);
             this.splitTreeViewAndOther.Panel2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.splitTreeViewAndOther.Size = new System.Drawing.Size(829, 322);
+            this.splitTreeViewAndOther.Size = new System.Drawing.Size(829, 350);
             this.splitTreeViewAndOther.SplitterDistance = 331;
             this.splitTreeViewAndOther.TabIndex = 0;
             // 
@@ -162,7 +162,7 @@
             this.treeViewDesequencePacket.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewDesequencePacket.Location = new System.Drawing.Point(0, 0);
             this.treeViewDesequencePacket.Name = "treeViewDesequencePacket";
-            this.treeViewDesequencePacket.Size = new System.Drawing.Size(331, 322);
+            this.treeViewDesequencePacket.Size = new System.Drawing.Size(331, 350);
             this.treeViewDesequencePacket.TabIndex = 0;
             // 
             // splitRawDataAndOther
@@ -179,8 +179,8 @@
             // splitRawDataAndOther.Panel2
             // 
             this.splitRawDataAndOther.Panel2.Controls.Add(this.splitStatisticsAndFilter);
-            this.splitRawDataAndOther.Size = new System.Drawing.Size(484, 322);
-            this.splitRawDataAndOther.SplitterDistance = 150;
+            this.splitRawDataAndOther.Size = new System.Drawing.Size(484, 350);
+            this.splitRawDataAndOther.SplitterDistance = 163;
             this.splitRawDataAndOther.TabIndex = 0;
             // 
             // splitContainerRawData
@@ -196,7 +196,7 @@
             // splitContainerRawData.Panel2
             // 
             this.splitContainerRawData.Panel2.Controls.Add(this.textBoxConvertRawData);
-            this.splitContainerRawData.Size = new System.Drawing.Size(484, 150);
+            this.splitContainerRawData.Size = new System.Drawing.Size(484, 163);
             this.splitContainerRawData.SplitterDistance = 244;
             this.splitContainerRawData.TabIndex = 0;
             // 
@@ -208,7 +208,7 @@
             this.textBoxRawData.Name = "textBoxRawData";
             this.textBoxRawData.ReadOnly = true;
             this.textBoxRawData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxRawData.Size = new System.Drawing.Size(244, 150);
+            this.textBoxRawData.Size = new System.Drawing.Size(244, 163);
             this.textBoxRawData.TabIndex = 0;
             // 
             // textBoxConvertRawData
@@ -219,7 +219,7 @@
             this.textBoxConvertRawData.Name = "textBoxConvertRawData";
             this.textBoxConvertRawData.ReadOnly = true;
             this.textBoxConvertRawData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxConvertRawData.Size = new System.Drawing.Size(236, 150);
+            this.textBoxConvertRawData.Size = new System.Drawing.Size(236, 163);
             this.textBoxConvertRawData.TabIndex = 0;
             // 
             // splitStatisticsAndFilter
@@ -235,31 +235,31 @@
             // splitStatisticsAndFilter.Panel2
             // 
             this.splitStatisticsAndFilter.Panel2.Controls.Add(this.groupBoxFilter);
-            this.splitStatisticsAndFilter.Size = new System.Drawing.Size(484, 168);
+            this.splitStatisticsAndFilter.Size = new System.Drawing.Size(484, 183);
             this.splitStatisticsAndFilter.SplitterDistance = 229;
             this.splitStatisticsAndFilter.TabIndex = 0;
             // 
             // groupBoxStatistics
             // 
-            this.groupBoxStatistics.Controls.Add(this.textBoxStatistcs);
+            this.groupBoxStatistics.Controls.Add(this.textBoxStatistics);
             this.groupBoxStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxStatistics.Location = new System.Drawing.Point(0, 0);
             this.groupBoxStatistics.Name = "groupBoxStatistics";
-            this.groupBoxStatistics.Size = new System.Drawing.Size(229, 168);
+            this.groupBoxStatistics.Size = new System.Drawing.Size(229, 183);
             this.groupBoxStatistics.TabIndex = 0;
             this.groupBoxStatistics.TabStop = false;
             this.groupBoxStatistics.Text = "统计";
             // 
-            // textBoxStatistcs
+            // textBoxStatistics
             // 
-            this.textBoxStatistcs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxStatistcs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxStatistcs.Location = new System.Drawing.Point(3, 23);
-            this.textBoxStatistcs.Multiline = true;
-            this.textBoxStatistcs.Name = "textBoxStatistcs";
-            this.textBoxStatistcs.ReadOnly = true;
-            this.textBoxStatistcs.Size = new System.Drawing.Size(223, 142);
-            this.textBoxStatistcs.TabIndex = 0;
+            this.textBoxStatistics.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxStatistics.Location = new System.Drawing.Point(3, 23);
+            this.textBoxStatistics.Multiline = true;
+            this.textBoxStatistics.Name = "textBoxStatistics";
+            this.textBoxStatistics.ReadOnly = true;
+            this.textBoxStatistics.Size = new System.Drawing.Size(223, 157);
+            this.textBoxStatistics.TabIndex = 0;
             // 
             // groupBoxFilter
             // 
@@ -267,7 +267,7 @@
             this.groupBoxFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFilter.Location = new System.Drawing.Point(0, 0);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Size = new System.Drawing.Size(251, 168);
+            this.groupBoxFilter.Size = new System.Drawing.Size(251, 183);
             this.groupBoxFilter.TabIndex = 0;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "过滤规则";
@@ -287,8 +287,8 @@
             // splitFilterContentAndButton.Panel2
             // 
             this.splitFilterContentAndButton.Panel2.Controls.Add(this.splitButtonPos);
-            this.splitFilterContentAndButton.Size = new System.Drawing.Size(245, 142);
-            this.splitFilterContentAndButton.SplitterDistance = 98;
+            this.splitFilterContentAndButton.Size = new System.Drawing.Size(245, 157);
+            this.splitFilterContentAndButton.SplitterDistance = 108;
             this.splitFilterContentAndButton.TabIndex = 0;
             // 
             // textBoxFilter
@@ -297,7 +297,7 @@
             this.textBoxFilter.Location = new System.Drawing.Point(0, 0);
             this.textBoxFilter.Multiline = true;
             this.textBoxFilter.Name = "textBoxFilter";
-            this.textBoxFilter.Size = new System.Drawing.Size(245, 98);
+            this.textBoxFilter.Size = new System.Drawing.Size(245, 108);
             this.textBoxFilter.TabIndex = 1;
             // 
             // splitButtonPos
@@ -313,7 +313,7 @@
             // splitButtonPos.Panel2
             // 
             this.splitButtonPos.Panel2.Controls.Add(this.enableFilterButton);
-            this.splitButtonPos.Size = new System.Drawing.Size(245, 40);
+            this.splitButtonPos.Size = new System.Drawing.Size(245, 45);
             this.splitButtonPos.SplitterDistance = 118;
             this.splitButtonPos.TabIndex = 0;
             // 
@@ -322,7 +322,7 @@
             this.sniffStateChangeButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sniffStateChangeButton.Location = new System.Drawing.Point(0, 0);
             this.sniffStateChangeButton.Name = "sniffStateChangeButton";
-            this.sniffStateChangeButton.Size = new System.Drawing.Size(118, 40);
+            this.sniffStateChangeButton.Size = new System.Drawing.Size(118, 45);
             this.sniffStateChangeButton.TabIndex = 0;
             this.sniffStateChangeButton.Text = "暂停嗅探";
             this.sniffStateChangeButton.UseVisualStyleBackColor = true;
@@ -333,7 +333,7 @@
             this.enableFilterButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.enableFilterButton.Location = new System.Drawing.Point(0, 0);
             this.enableFilterButton.Name = "enableFilterButton";
-            this.enableFilterButton.Size = new System.Drawing.Size(123, 40);
+            this.enableFilterButton.Size = new System.Drawing.Size(123, 45);
             this.enableFilterButton.TabIndex = 0;
             this.enableFilterButton.Text = "启用规则";
             this.enableFilterButton.UseVisualStyleBackColor = true;
@@ -343,7 +343,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 492);
+            this.ClientSize = new System.Drawing.Size(839, 533);
             this.Controls.Add(this.splitPacketListAndOther);
             this.Name = "SniffWindow";
             this.ShowIcon = false;
@@ -411,6 +411,6 @@
         private System.Windows.Forms.TextBox textBoxRawData;
         private System.Windows.Forms.SplitContainer splitContainerRawData;
         private System.Windows.Forms.TextBox textBoxConvertRawData;
-        private System.Windows.Forms.TextBox textBoxStatistcs;
+        private System.Windows.Forms.TextBox textBoxStatistics;
     }
 }

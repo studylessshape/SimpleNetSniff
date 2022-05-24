@@ -31,19 +31,33 @@ namespace NetSniff
             // 设置嗅探事件，并开始嗅探
             device.OnPacketArrival += Device_OnPacketArrival;
             device.Open(DeviceMode.Promiscuous, 1000);
-            device.Filter = filter;
             
             isInSniff = true;
+
+            bool isError = false;
             try
             {
+                device.Filter = filter;
                 device.StartCapture();
                 sniffStateChangeButton.Text = "暂停嗅探";
             }
-            catch (Exception er)
+            catch (DeviceNotReadyException)
             {
-                MessageBox.Show(er.Message, "发生错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                StopSniff();
-                sniffStateChangeButton.Text = "开始嗅探";
+                MessageBox.Show("    指定网卡未能开启，或抓包事件未能绑定成功。", "发生错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isError = true;
+            }
+            catch (PcapException er)
+            {
+                MessageBox.Show($"    过滤规则设置错误，请检查过滤规则是否正确！{Environment.NewLine}    具体报错：{Environment.NewLine}    {er.Message}", "发生错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isError = true;
+            }
+            finally
+            {
+                if (isError)
+                {
+                    StopSniff();
+                    sniffStateChangeButton.Text = "开始嗅探";
+                }
             }
         }
 
@@ -53,6 +67,7 @@ namespace NetSniff
             device.StopCapture();
             device.Close();
             isInSniff = false;
+            sniffStateChangeButton.Text = "开始嗅探";
         }
 
         private void SniffWindow_Load(object sender, EventArgs e)
@@ -70,12 +85,10 @@ namespace NetSniff
             if (isInSniff)
             {
                 StopSniff();
-                sniffStateChangeButton.Text = "开始嗅探";
             }
             else
             {
                 StartSniff(textBoxFilter.Text);
-                sniffStateChangeButton.Text = "暂停嗅探";
             }
         }
 
@@ -88,7 +101,7 @@ namespace NetSniff
                 do
                 {
                     var ethPacket = new PacketDotNet.EthernetPacket(packet.BytesSegment);
-                    
+
                     if (ethPacket.Type == PacketDotNet.EthernetType.Arp)
                     {
                         PacketDotNet.ArpPacket arpPacket = new PacketDotNet.ArpPacket(ethPacket.BytesSegment);
@@ -150,18 +163,26 @@ namespace NetSniff
             }
             finally
             {
-                textBoxStatistcs.Text = "";
-                foreach(var it in packetCnt)
-                {
-                    textBoxStatistcs.Text += $"{it.Key}: {it.Value}{Environment.NewLine}";
-                }
-                textBoxStatistcs.Text += $"总计: {countOfPacket}";
+                SetTextOfStaistics();
             }
         }
 
         private void AddPacketToList(ListViewItem packetInfo)
         {
             listViewPacket.Items.Add(packetInfo);
+        }
+
+        private void SetTextOfStaistics()
+        {
+            textBoxStatistics.Text = $"[抓包]{Environment.NewLine}";
+            foreach (var it in packetCnt)
+            {
+                textBoxStatistics.Text += $"{it.Key}: {it.Value}{Environment.NewLine}";
+            }
+            textBoxStatistics.Text += $"总计: {countOfPacket}{Environment.NewLine}";
+
+            textBoxStatistics.Text += $"[网卡]{Environment.NewLine}接收: {device.Statistics.ReceivedPackets}{Environment.NewLine}";
+            textBoxStatistics.Text += $"丢失: {device.Statistics.DroppedPackets}";
         }
 
         private void listViewPacket_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -234,7 +255,7 @@ namespace NetSniff
                         icmpNode.Nodes.Add($"Checksum: 0x{icmpV4Packet.Checksum.ToString("x")}");
                         icmpNode.Nodes.Add($"Identifier: {icmpV4Packet.Id}(0x{icmpV4Packet.Id.ToString("x")})");
                         icmpNode.Nodes.Add($"Sequence Number: {icmpV4Packet.Sequence}(0x{icmpV4Packet.Sequence.ToString("x")})");
-                        
+
                         TreeNode icmpDataNode = new TreeNode("Data");
                         icmpDataNode.Nodes.Add($"Data: {BytesToHexString(icmpV4Packet.Bytes, "")}");
                         icmpDataNode.Nodes.Add($"[Length: {icmpV4Packet.Data.Length}]");
@@ -289,11 +310,11 @@ namespace NetSniff
         {
             StringBuilder sbmac = new StringBuilder();
             int len = bytes.Length;
-            for(int i = 0;i < len - 1;i ++)
+            for (int i = 0; i < len - 1; i++)
             {
                 sbmac.Append(string.Format("{0:X2}{1}", bytes[i], spanStr));
             }
-            sbmac.Append(string.Format("{0:X2}", bytes[len-1]));
+            sbmac.Append(string.Format("{0:X2}", bytes[len - 1]));
             return sbmac.ToString().Trim();
         }
 
