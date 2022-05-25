@@ -17,20 +17,24 @@ namespace NetSniff
         readonly List<PacketDotNet.Packet> packets;
         readonly Dictionary<string, int> packetCnt;
 
-        public SniffWindow(NpcapDevice device)
+        NetSniffHelper sniffHelper;
+
+        public SniffWindow(NpcapDevice device, NetSniffHelper sniffHelper)
         {
             InitializeComponent();
             this.device = device;
             packets = new List<PacketDotNet.Packet>();
             packetCnt = new Dictionary<string, int>();
             this.Text += $" - {device.Description}";
+
+            this.sniffHelper = sniffHelper;
         }
 
         private void StartSniff(string filter)
         {
             // 设置嗅探事件，并开始嗅探
             device.OnPacketArrival += Device_OnPacketArrival;
-            device.Open(DeviceMode.Promiscuous, 1000);
+            device.Open(sniffHelper.Mode, sniffHelper.ReadTimeout);
             
             isInSniff = true;
 

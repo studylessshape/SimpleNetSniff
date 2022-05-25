@@ -12,7 +12,7 @@ namespace NetSniff
 {
     public partial class MainForm : Form
     {
-        private NetSniffHelper sniffHelp = null;
+        private NetSniffHelper sniffHelper = null;
 
         public MainForm()
         {
@@ -33,7 +33,7 @@ namespace NetSniff
         {
             // 将网卡信息显示到文本框
             string info =
-                sniffHelp.Devices[deviceChoiceBox.SelectedIndex].ToString();
+                sniffHelper.Devices[deviceChoiceBox.SelectedIndex].ToString();
             deviceInfomationTextBox.Text = info.Replace("\n", Environment.NewLine);
             if (!startSniffButton.Enabled)
                 startSniffButton.Enabled = true;
@@ -41,7 +41,7 @@ namespace NetSniff
 
         private void startSniffButton_Click(object sender, EventArgs e)
         {
-            SniffWindow sniffWindow = new SniffWindow(sniffHelp.Devices[deviceChoiceBox.SelectedIndex]);
+            SniffWindow sniffWindow = new SniffWindow(sniffHelper.Devices[deviceChoiceBox.SelectedIndex], sniffHelper);
             //sniffWindow.ShowDialog();
             sniffWindow.ShowInTaskbar = true;
             sniffWindow.Show();
@@ -62,20 +62,45 @@ namespace NetSniff
             startSniffButton.Enabled = false;
             deviceInfomationTextBox.Text = "";
             deviceChoiceBox.Items.Clear();
-            sniffHelp = new NetSniffHelper();
+            sniffHelper = new NetSniffHelper();
 
-            if (sniffHelp.Devices == null || sniffHelp.Devices.Count <= 0)
+            if (sniffHelper.Devices == null || sniffHelper.Devices.Count <= 0)
             {
                 MessageBox.Show("查找网卡失败！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                int len = sniffHelp.Devices.Count;
+                int len = sniffHelper.Devices.Count;
                 for (int i = 0; i < len; i++)
                 {
-                    deviceChoiceBox.Items.Add($"{sniffHelp.Devices[i].Description} : {sniffHelp.Devices[i].Name}");
+                    deviceChoiceBox.Items.Add($"{sniffHelper.Devices[i].Description} : {sniffHelper.Devices[i].Name}");
                 }
+
+                normalToolStripMenuItem.Checked = true;
+                promiscuousToolStripMenuItem.Checked = false;
             }
+        }
+
+        private void 普通模式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sniffHelper.Mode = SharpPcap.DeviceMode.Normal;
+
+            normalToolStripMenuItem.Checked = true;
+            promiscuousToolStripMenuItem.Checked = false;
+        }
+
+        private void 混杂模式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sniffHelper.Mode = SharpPcap.DeviceMode.Promiscuous;
+
+            normalToolStripMenuItem.Checked = false;
+            promiscuousToolStripMenuItem.Checked = true;
+        }
+
+        private void readTimeoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReadTimeoutSettingForm readTimeoutSettingForm = new ReadTimeoutSettingForm(sniffHelper);
+            readTimeoutSettingForm.ShowDialog();
         }
     }
 }
